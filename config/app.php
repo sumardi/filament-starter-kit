@@ -125,4 +125,21 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Default User
+    |--------------------------------------------------------------------------
+    |
+    | This configuration option determines the default user credentials that
+    | will be used to create the first user account when the application
+    | is installed. You should set these values to something secure.
+    |
+    | Default password is "password".
+    |
+    */
+    'default_user' => [
+        'name' => env('DEFAULT_USER_NAME', 'Admin User'),
+        'email' => env('DEFAULT_USER_EMAIL', 'admin@example.com'),
+    ],
+
 ];
