@@ -18,3 +18,4 @@ Kickstart your project with pre-configured Filament admin panel. Only essential 
 - **laravel/pint** - Code style fixer
 - **pestphp/pest** - Testing framework
 - **rector/rector** - Automated refactoring
+- **vemcogroup/laravel-translation** - Scan your app for translations and create your *.json file.

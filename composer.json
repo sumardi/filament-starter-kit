@@ -10,7 +10,8 @@
         "filament/filament": "^4.0",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
-        "nunomaduro/essentials": "^1.0"
+        "nunomaduro/essentials": "^1.0",
+        "vemcogroup/laravel-translation": "^3.0"
     },
     "require-dev": {
         "driftingly/rector-laravel": "^2.1",
@@ -72,6 +73,7 @@
         ],
         "test": [
             "@php artisan config:clear --ansi",
+            "@trans",
             "@pint",
             "@rector",
             "@phpstan",
@@ -80,7 +82,8 @@
         "pest": "./vendor/bin/pest --parallel --compact",
         "pint": "./vendor/bin/pint",
         "phpstan": "./vendor/bin/phpstan analyse --memory-limit=1G",
-        "rector": "./vendor/bin/rector process --ansi"
+        "rector": "./vendor/bin/rector process --ansi",
+        "trans": "@php artisan translation:scan"
     },
     "extra": {
         "laravel": {
