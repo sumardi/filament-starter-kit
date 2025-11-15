@@ -1,5 +1,10 @@
 # Filament Starter Kit
 
+[![Pint](https://github.com/sumardi/filament-starter-kit/actions/workflows/pint.yml/badge.svg)](https://github.com/sumardi/filament-starter-kit/actions/workflows/pint.yml)
+[![PEST](https://github.com/sumardi/filament-starter-kit/actions/workflows/pest.yml/badge.svg)](https://github.com/sumardi/filament-starter-kit/actions/workflows/pest.yml)
+[![PHPStan](https://github.com/sumardi/filament-starter-kit/actions/workflows/phpstan.yml/badge.svg)](https://github.com/sumardi/filament-starter-kit/actions/workflows/phpstan.yml)
+[![PHPStan](https://github.com/sumardi/filament-starter-kit/actions/workflows/rector.yml/badge.svg)](https://github.com/sumardi/filament-starter-kit/actions/workflows/rector.yml)
+
 Kickstart your project with pre-configured Filament admin panel. Only essential development tools are included.
 
 > [!NOTE]
