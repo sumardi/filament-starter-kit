@@ -17,7 +17,7 @@ final class Login extends BasePage
         if (app()->isLocal()) {
             $this->form->fill([
                 'email' => config('app.default_user.email'),
-                'password' => 'password',
+                'password' => config('app.default_user.password'),
                 'remember' => true,
             ]);
         }

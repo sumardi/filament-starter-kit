@@ -140,6 +140,7 @@ return [
     'default_user' => [
         'name' => env('DEFAULT_USER_NAME', 'Admin User'),
         'email' => env('DEFAULT_USER_EMAIL', 'admin@example.com'),
+        'password' => env('DEFAULT_USER_PASSWORD', 'password'),
     ],
 
 ];
