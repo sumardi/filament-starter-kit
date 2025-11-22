@@ -32,6 +32,7 @@ final class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->spa()
             ->login(Login::class)
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->font('Poppins')
             ->colors([
                 'primary' => Color::Amber,

@@ -1,0 +1,18 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/Admin/**/*';
+@source '../../../../resources/views/filament/admin/**/*';
+
+.fi-sidebar-group-label {
+    @apply uppercase;
+}
+
+.fi-sidebar-nav {
+    border-right: 1px solid #e4e4e5;
+    background-color: var(--color-white);
+}
+
+.dark .fi-sidebar-nav {
+    border-right: 1px solid #18181B;
+    background-color: var(--gray-900);
+}
