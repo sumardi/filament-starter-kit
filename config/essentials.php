@@ -166,6 +166,6 @@ return [
     |
     */
 
-    NunoMaduro\Essentials\Configurables\Unguard::class => false,
+    NunoMaduro\Essentials\Configurables\Unguard::class => true,
 
 ];

@@ -1,1 +1,16 @@
-[]
+{
+    "-": "-",
+    "Account Information": "Account Information",
+    "Created At": "Created At",
+    "Email": "Email",
+    "Email Verified At": "Email Verified At",
+    "Ensure the account is using a long, random password to stay secure.": "Ensure the account is using a long, random password to stay secure.",
+    "Fill in the account information.": "Fill in the account information.",
+    "Leave blank to keep the current password.": "Leave blank to keep the current password.",
+    "Name": "Name",
+    "New Password": "New Password",
+    "Not verified": "Not verified",
+    "Password": "Password",
+    "Updated At": "Updated At",
+    "View and manage the basic account details for this user.": "View and manage the basic account details for this user."
+}
