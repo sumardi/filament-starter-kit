@@ -30,7 +30,9 @@ final class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->spa()
             ->login(Login::class)
+            ->font('Poppins')
             ->colors([
                 'primary' => Color::Amber,
             ])

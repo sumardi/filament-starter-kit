@@ -21,6 +21,7 @@ it('can list users', function (): void {
     $users = User::factory()->count(3)->create();
 
     livewire(ListUsers::class)
+        ->loadTable()
         ->assertCanSeeTableRecords($users);
 });
 
@@ -28,6 +29,7 @@ it('can search users by name', function (): void {
     $user = User::factory()->create(['name' => 'John Doe']);
 
     livewire(ListUsers::class)
+        ->loadTable()
         ->searchTable('John')
         ->assertCanSeeTableRecords([$user])
         ->assertCountTableRecords(1);
@@ -37,6 +39,7 @@ it('can search users by email', function (): void {
     $user = User::factory()->create(['email' => 'john@example.com']);
 
     livewire(ListUsers::class)
+        ->loadTable()
         ->searchTable('john@example.com')
         ->assertCanSeeTableRecords([$user])
         ->assertCountTableRecords(1);

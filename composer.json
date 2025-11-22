@@ -10,6 +10,7 @@
         "filament/filament": "^4.0",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
+        "mallardduck/blade-lucide-icons": "^1.24",
         "nunomaduro/essentials": "^1.0",
         "vemcogroup/laravel-translation": "^3.0"
     },
