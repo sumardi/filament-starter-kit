@@ -34,12 +34,12 @@ final class UserForm
                             ->email()
                             ->required(),
                     ]),
-                Section::make(__('New Password'))
+                Section::make(__('Password'))
                     ->description(__('Ensure the account is using a long, random password to stay secure.'))
                     ->inlineLabel()
                     ->schema([
                         TextInput::make('password')
-                            ->label(__('Password'))
+                            ->label(__('New password'))
                             ->password()
                             ->required(fn ($livewire): bool => $livewire instanceof CreateUser)
                             ->revealable(filament()->arePasswordsRevealable())

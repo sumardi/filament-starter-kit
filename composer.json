@@ -8,11 +8,13 @@
     "require": {
         "php": "^8.4",
         "filament/filament": "^4.0",
+        "filament/spatie-laravel-media-library-plugin": "^4.2",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
         "mallardduck/blade-lucide-icons": "^1.24",
         "nunomaduro/essentials": "^1.0",
-        "vemcogroup/laravel-translation": "^3.0"
+        "vemcogroup/laravel-translation": "^3.0",
+        "ysfkaya/filament-phone-input": "*"
     },
     "require-dev": {
         "driftingly/rector-laravel": "^2.1",

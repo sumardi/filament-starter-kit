@@ -10,7 +10,7 @@ use Override;
 
 abstract class TestCase extends BaseTestCase
 {
-    protected User $user;
+    public User $user;
 
     #[Override]
     protected function setUp(): void

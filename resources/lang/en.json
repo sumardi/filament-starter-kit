@@ -1,16 +1,22 @@
 {
     "-": "-",
     "Account Information": "Account Information",
+    "Admin Panel": "Admin Panel",
+    "Avatar": "Avatar",
     "Created At": "Created At",
     "Email": "Email",
     "Email Verified At": "Email Verified At",
     "Ensure the account is using a long, random password to stay secure.": "Ensure the account is using a long, random password to stay secure.",
     "Fill in the account information.": "Fill in the account information.",
+    "Leave blank if you do not want to change it.": "Leave blank if you do not want to change it.",
     "Leave blank to keep the current password.": "Leave blank to keep the current password.",
+    "Manage your user profile.": "Manage your user profile.",
+    "My Profile": "My Profile",
     "Name": "Name",
-    "New Password": "New Password",
+    "New password": "New password",
     "Not verified": "Not verified",
     "Password": "Password",
+    "Update your personal information.": "Update your personal information.",
     "Updated At": "Updated At",
     "View and manage the basic account details for this user.": "View and manage the basic account details for this user."
 }
