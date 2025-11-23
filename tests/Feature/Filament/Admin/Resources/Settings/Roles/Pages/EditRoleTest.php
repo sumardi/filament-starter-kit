@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Filament\Admin\Resources\Settings\Roles\Pages\EditRole;
+use App\Filament\Admin\Resources\Settings\Roles\RelationManagers\UsersRelationManager;
 use App\Models\Role;
 
 use function Pest\Laravel\get;
@@ -71,4 +72,11 @@ it('validates unique role name', function (): void {
         ])
         ->call('save')
         ->assertHasFormErrors(['name' => 'unique']);
+});
+
+it('can load users relation manager', function (): void {
+    livewire(EditRole::class, [
+        'record' => $this->role->id,
+    ])
+        ->assertSeeLivewire(UsersRelationManager::class);
 });
