@@ -12,6 +12,11 @@ final class ViewRole extends ViewRecord
 {
     protected static string $resource = RoleResource::class;
 
+    public function hasCombinedRelationManagerTabsWithContent(): bool
+    {
+        return true;
+    }
+
     protected function getHeaderActions(): array
     {
         return [

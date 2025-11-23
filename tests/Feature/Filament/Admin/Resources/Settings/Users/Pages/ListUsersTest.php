@@ -26,11 +26,11 @@ it('can list users', function (): void {
 });
 
 it('can search users by name', function (): void {
-    $user = User::factory()->create(['name' => 'John Doe']);
+    $user = User::factory()->create();
 
     livewire(ListUsers::class)
         ->loadTable()
-        ->searchTable('John')
+        ->searchTable($user->name)
         ->assertCanSeeTableRecords([$user])
         ->assertCountTableRecords(1);
 });
