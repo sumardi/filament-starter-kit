@@ -26,12 +26,15 @@ final class UserInfolist
                                 ->label(__('Name')),
                             TextEntry::make('email')
                                 ->label(__('Email')),
+                            TextEntry::make('roles.display_name')
+                                ->label(__('Roles'))
+                                ->badge(),
+                        ]),
+                        Group::make([
                             TextEntry::make('email_verified_at')
                                 ->label(__('Email Verified At'))
                                 ->placeholder(__('Not verified'))
                                 ->dateTime(),
-                        ]),
-                        Group::make([
                             TextEntry::make('created_at')
                                 ->label(__('Created At'))
                                 ->placeholder(__('-'))

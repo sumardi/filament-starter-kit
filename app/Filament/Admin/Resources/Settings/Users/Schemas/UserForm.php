@@ -6,6 +6,7 @@ namespace App\Filament\Admin\Resources\Settings\Users\Schemas;
 
 use App\Filament\Admin\Resources\Settings\Users\Pages\CreateUser;
 use App\Filament\Admin\Resources\Settings\Users\Pages\EditUser;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -48,6 +49,17 @@ final class UserForm
                             ->dehydrated(fn ($state): bool => filled($state))
                             ->dehydrateStateUsing(fn (string $state): string => Hash::make($state))
                             ->helperText(fn ($livewire): array|string|null => $livewire instanceof EditUser ? __('Leave blank to keep the current password.') : null),
+                    ]),
+                Section::make(__('Role'))
+                    ->description(__('Assign one or more roles to the user.'))
+                    ->inlineLabel()
+                    ->schema([
+                        Select::make('roles')
+                            ->label(__('Role'))
+                            ->multiple()
+                            ->relationship('roles', 'display_name')
+                            ->preload()
+                            ->searchable(),
                     ]),
             ]);
     }

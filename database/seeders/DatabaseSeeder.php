@@ -18,10 +18,12 @@ final class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call(PermissionTableSeeder::class);
+
         User::factory()->create([
             'name' => config('app.default_user.name'),
             'email' => config('app.default_user.email'),
             'password' => Hash::make(config('app.default_user.password')),
-        ]);
+        ])->assignRole('admin');
     }
 }
