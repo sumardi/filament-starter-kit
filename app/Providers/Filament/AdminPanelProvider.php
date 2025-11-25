@@ -29,6 +29,7 @@ final class AdminPanelProvider extends PanelProvider
         return $panel
             ->id('admin')
             ->path('admin')
+            ->emailVerification()
             ->spa()
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->font('Poppins')

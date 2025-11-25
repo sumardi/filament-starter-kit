@@ -33,6 +33,8 @@ final class UserPanelProvider extends PanelProvider
             ->path('user')
             ->login(Login::class)
             ->profile(MyProfile::class, isSimple: false)
+            ->emailVerification()
+            ->passwordReset()
             ->spa()
             ->font('Poppins')
             ->colors([
