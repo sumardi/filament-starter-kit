@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace App\Policies;
 
-use App\Models\Role;
 use App\Models\User;
 
-final class RolePolicy
+final class UserPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('manage roles');
+        return $user->can('manage users');
     }
 
     /**
@@ -22,7 +21,7 @@ final class RolePolicy
      */
     public function view(User $user): bool
     {
-        return $user->can('manage roles');
+        return $user->can('manage users');
     }
 
     /**
@@ -30,23 +29,23 @@ final class RolePolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('manage roles');
+        return $user->can('manage users');
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Role $role): bool
+    public function update(User $user): bool
     {
-        return $role->is_editable && $user->can('manage roles');
+        return $user->can('manage users');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Role $role): bool
+    public function delete(User $user): bool
     {
-        return $role->is_deletable && $user->can('manage roles');
+        return $user->can('manage users');
     }
 
     /**
@@ -54,7 +53,7 @@ final class RolePolicy
      */
     public function restore(User $user): bool
     {
-        return $user->can('manage roles');
+        return $user->can('manage users');
     }
 
     /**
@@ -62,6 +61,6 @@ final class RolePolicy
      */
     public function forceDelete(User $user): bool
     {
-        return $user->can('manage roles');
+        return $user->can('manage users');
     }
 }

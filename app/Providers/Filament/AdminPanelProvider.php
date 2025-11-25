@@ -67,7 +67,12 @@ final class AdminPanelProvider extends PanelProvider
                     ->label(__('Admin Panel'))
                     ->url(fn (): string => route('filament.admin.pages.dashboard'))
                     ->icon('heroicon-m-shield-check')
-                    ->visible(fn (): bool => true),
+                    ->visible(function () {
+                        /** @var Panel $panel */
+                        $panel = filament()->getPanel('admin');
+
+                        return auth()->user()?->canAccessPanel($panel) ?? false;
+                    }),
             ]);
     }
 }

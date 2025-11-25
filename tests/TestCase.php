@@ -12,6 +12,8 @@ abstract class TestCase extends BaseTestCase
 {
     public User $user;
 
+    protected $seed = true;
+
     #[Override]
     protected function setUp(): void
     {
@@ -22,7 +24,9 @@ abstract class TestCase extends BaseTestCase
 
     final public function asUser(): self
     {
-        $this->actingAs($this->user = User::factory()->create());
+        $this->user = User::factory()->create()
+            ->assignRole('admin');
+        $this->actingAs($this->user);
 
         return $this;
     }

@@ -21,7 +21,7 @@ final class RoleFactory extends Factory
     {
         return [
             'display_name' => fake()->word(),
-            'name' => fake()->word(),
+            'name' => fake()->unique()->word(),
             'guard_name' => 'web',
             'is_deletable' => true,
             'is_editable' => true,

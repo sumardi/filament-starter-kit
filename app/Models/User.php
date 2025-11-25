@@ -46,7 +46,13 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
      */
     public function canAccessPanel(Panel $panel): bool
     {
-        return true;
+        $permissions = Permission::query()->where('group', 'admin')->pluck('name');
+
+        return match ($panel->getId()) {
+            'admin' => $this->hasAnyPermission($permissions),
+            'user' => true,
+            default => false,
+        };
     }
 
     /**

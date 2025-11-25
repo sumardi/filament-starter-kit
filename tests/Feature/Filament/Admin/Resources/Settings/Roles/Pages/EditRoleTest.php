@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Filament\Admin\Resources\Settings\Roles\Pages\EditRole;
 use App\Filament\Admin\Resources\Settings\Roles\RelationManagers\UsersRelationManager;
+use App\Models\Permission;
 use App\Models\Role;
 
 use function Pest\Laravel\get;
@@ -79,4 +80,18 @@ it('can load users relation manager', function (): void {
         'record' => $this->role->id,
     ])
         ->assertSeeLivewire(UsersRelationManager::class);
+});
+
+it('can update role permissions', function (): void {
+    $newPermission = Permission::query()->firstWhere(['name' => 'manage roles']);
+
+    livewire(EditRole::class, ['record' => $this->role->id])
+        ->fillForm([
+            'permissions' => [$newPermission->id],
+        ])
+        ->call('save')
+        ->assertHasNoFormErrors();
+
+    expect($this->user->fresh())
+        ->can($newPermission->name)->toBeTrue();
 });

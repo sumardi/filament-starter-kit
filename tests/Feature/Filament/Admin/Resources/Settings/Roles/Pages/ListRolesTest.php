@@ -25,12 +25,12 @@ it('can list roles', function (): void {
 });
 
 it('can search roles by name', function (): void {
-    $role = Role::factory()->create(['display_name' => 'Admin', 'name' => 'admin']);
+    $role = Role::factory()->create(['display_name' => 'Editor', 'name' => 'editor']);
     Role::factory()->count(2)->create();
 
     livewire(ListRoles::class)
         ->loadTable()
-        ->searchTable('Admin')
+        ->searchTable('Editor')
         ->assertCanSeeTableRecords([$role])
         ->assertCountTableRecords(1);
 });

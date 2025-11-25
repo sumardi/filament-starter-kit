@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Filament\Admin\Resources\Settings\Roles\Pages\CreateRole;
+use App\Models\Permission;
 use App\Models\Role;
 
 use function Pest\Laravel\assertDatabaseHas;
@@ -51,4 +52,23 @@ it('validates unique name when creating a role', function (): void {
         ->assertHasFormErrors([
             'name' => 'unique',
         ]);
+});
+
+it('can create a role with permissions', function (): void {
+    $permission = Permission::query()->firstWhere('name', 'manage users');
+    livewire(CreateRole::class)
+        ->fillForm([
+            'display_name' => 'Editor',
+            'name' => 'editor',
+            'guard_name' => 'web',
+            'permissions' => [$permission->id],
+        ])
+        ->call('create')
+        ->assertHasNoFormErrors();
+
+    assertDatabaseHas(Role::class, [
+        'name' => 'editor',
+    ]);
+    expect($this->user->fresh())
+        ->can($permission->name)->toBeTrue();
 });
