@@ -7,6 +7,11 @@ use Tests\TestCase;
 
 pest()->extend(TestCase::class)
     ->use(RefreshDatabase::class)
+    ->group('Auth')
+    ->in('Feature/Filament/Auth');
+
+pest()->extend(TestCase::class)
+    ->use(RefreshDatabase::class)
     ->group('Admin')
     ->beforeEach(function (): void {
         filament()->setCurrentPanel('admin');
