@@ -7,6 +7,8 @@ namespace App\Providers\Filament;
 use App\Filament\Pages\Auth\Login;
 use App\Filament\User\Pages\MyProfile;
 use Filament\Actions\Action;
+use Filament\Auth\MultiFactor\App\AppAuthentication;
+use Filament\Auth\MultiFactor\Email\EmailAuthentication;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -35,6 +37,13 @@ final class UserPanelProvider extends PanelProvider
             ->profile(MyProfile::class, isSimple: false)
             ->emailVerification()
             ->passwordReset()
+            ->multiFactorAuthentication([
+                AppAuthentication::make()
+                    ->recoverable()
+                    ->recoveryCodeCount(10)
+                    ->regenerableRecoveryCodes(false),
+                EmailAuthentication::make(),
+            ])
             ->spa()
             ->font('Poppins')
             ->colors([

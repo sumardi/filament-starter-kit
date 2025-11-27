@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Database\Factories\UserFactory;
+use Filament\Auth\MultiFactor\App\Contracts\HasAppAuthentication;
+use Filament\Auth\MultiFactor\App\Contracts\HasAppAuthenticationRecovery;
+use Filament\Auth\MultiFactor\Email\Contracts\HasEmailAuthentication;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
@@ -17,7 +20,11 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
 
-final class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia, MustVerifyEmail
+/**
+ * @property ?string $app_authentication_secret
+ * @property ?array<string> $app_authentication_recovery_codes
+ */
+final class User extends Authenticatable implements FilamentUser, HasAppAuthentication, HasAppAuthenticationRecovery, HasAvatar, HasEmailAuthentication, HasMedia, MustVerifyEmail
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory;
@@ -32,6 +39,8 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
      * @var list<string>
      */
     protected $hidden = [
+        'app_authentication_secret',
+        'app_authentication_recovery_codes',
         'password',
         'remember_token',
     ];
@@ -64,6 +73,87 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     }
 
     /**
+     * This method should return the user's saved app authentication secret.
+     */
+    public function getAppAuthenticationSecret(): ?string
+    {
+        if (! array_key_exists('app_authentication_secret', $this->getAttributes())) {
+            return self::query()
+                ->whereKey($this->getKey())
+                ->first(['app_authentication_secret'])?->app_authentication_secret;
+        }
+
+        return $this->app_authentication_secret;
+    }
+
+    /**
+     * This method should save the user's app authentication secret.
+     */
+    public function saveAppAuthenticationSecret(?string $secret): void
+    {
+        $this->app_authentication_secret = $secret;
+        $this->save();
+    }
+
+    /**
+     * This method should return the user's app authentication holder name.
+     */
+    public function getAppAuthenticationHolderName(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * This method should return the user's saved app authentication recovery codes.
+     *
+     * @return ?array<string>
+     */
+    public function getAppAuthenticationRecoveryCodes(): ?array
+    {
+        if (! array_key_exists('app_authentication_recovery_codes', $this->getAttributes())) {
+            return self::query()
+                ->whereKey($this->getKey())
+                ->first(['app_authentication_recovery_codes'])?->app_authentication_recovery_codes;
+        }
+
+        return $this->app_authentication_recovery_codes;
+    }
+
+    /**
+     * This method should save the user's app authentication recovery codes.
+     *
+     * @param  array<string> | null  $codes
+     */
+    public function saveAppAuthenticationRecoveryCodes(?array $codes): void
+    {
+        $this->app_authentication_recovery_codes = $codes;
+        $this->save();
+    }
+
+    /**
+     * This method should return true if the user has enabled email authentication.
+     */
+    public function hasEmailAuthentication(): bool
+    {
+        if (! array_key_exists('has_email_authentication', $this->getAttributes())) {
+            return (bool) self::query()
+                ->whereKey($this->getKey())
+                ->value('has_email_authentication');
+        }
+
+        return $this->has_email_authentication;
+    }
+
+    /**
+     * This method should save whether or not the user has enabled email authentication.
+     */
+    public function toggleEmailAuthentication(bool $condition): void
+    {
+        $this->has_email_authentication = $condition;
+        $this->save();
+    }
+
+    /**
      * Register the media collections.
      */
     public function registerMediaCollections(): void
@@ -81,7 +171,10 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     protected function casts(): array
     {
         return [
+            'app_authentication_secret' => 'encrypted',
+            'app_authentication_recovery_codes' => 'encrypted:array',
             'email_verified_at' => 'datetime',
+            'has_email_authentication' => 'boolean',
             'password' => 'hashed',
         ];
     }
