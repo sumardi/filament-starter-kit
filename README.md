@@ -23,4 +23,15 @@ Kickstart your project with pre-configured Filament admin panel. Only essential 
 - **laravel/pint** - Code style fixer
 - **pestphp/pest** - Testing framework
 - **rector/rector** - Automated refactoring
-- **vemcogroup/laravel-translation** - Scan your app for translations and create your *.json file.
+- **vemcogroup/laravel-translation** - Scan your app for translations and create your *.json file
+
+## Quick Start
+
+```bash
+composer create-project sumardi/filament-starter-kit your-project-name
+cd your-project-name 
+composer install
+npm install
+npm run build
+php artisan serve
+```
