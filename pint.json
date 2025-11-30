@@ -56,6 +56,15 @@
         "self_accessor": true,
         "self_static_accessor": true,
         "strict_comparison": true,
-        "visibility_required": true
+        "visibility_required": true,
+        "class_attributes_separation": {
+            "elements": {
+                "const": "one",
+                "method": "one",
+                "property": "one",
+                "trait_import": "one",
+                "case": "one"
+            }
+        }
     }
 }
