@@ -7,7 +7,6 @@ namespace App\Filament\User\Pages;
 use Filament\Auth\Pages\EditProfile;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
-use Filament\Schemas\Components\Component;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\Hash;
@@ -55,7 +54,7 @@ final class MyProfile extends EditProfile
     }
 
     #[Override]
-    protected function getPasswordFormComponent(): Component
+    protected function getPasswordFormComponent(): TextInput
     {
         return TextInput::make('password')
             ->label(__('New password'))

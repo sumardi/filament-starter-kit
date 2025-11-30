@@ -30,7 +30,9 @@ final class User extends Authenticatable implements FilamentUser, HasAppAuthenti
     use HasFactory;
 
     use HasRoles;
+
     use InteractsWithMedia;
+
     use Notifiable;
 
     /**
