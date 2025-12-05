@@ -8,17 +8,17 @@ use App\Settings\PreferencesSettings;
 use function Pest\Laravel\get;
 use function Pest\Livewire\livewire;
 
-it('can render the page', function () {
+it('can render the page', function (): void {
     livewire(Preferences::class)
         ->assertSuccessful();
 });
 
-it('can open the route', function () {
+it('can open the route', function (): void {
     get(Preferences::getUrl())
         ->assertSuccessful();
 });
 
-it('can update preferences', function () {
+it('can update preferences', function (): void {
     livewire(Preferences::class)
         ->fillForm([
             'timezone' => 'Europe/London',
@@ -26,6 +26,6 @@ it('can update preferences', function () {
         ->call('save')
         ->assertHasNoFormErrors();
 
-    expect(app(PreferencesSettings::class))
+    expect(resolve(PreferencesSettings::class))
         ->timezone->toBe('Europe/London');
 });

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Filament\Admin\Pages\Settings;
 
-use Override;
 use App\Helpers\LocaleFinder;
 use App\Settings\PreferencesSettings;
 use BackedEnum;
@@ -14,6 +13,7 @@ use Filament\Pages\SettingsPage;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
+use Override;
 use UnitEnum;
 
 final class Preferences extends SettingsPage
