@@ -17,6 +17,8 @@ use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\ImportAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\ViewAction;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Schemas\Schema;
 use Filament\Support\Facades\FilamentIcon;
 use Filament\Support\Facades\FilamentTimezone;
 use Filament\Tables\Table;
@@ -41,6 +43,7 @@ final class FilamentServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureTimezone();
+        $this->configureDateTimeFormats();
         $this->configureTable();
         $this->configureAction();
         $this->configureIcon();
@@ -59,6 +62,55 @@ final class FilamentServiceProvider extends ServiceProvider
             /** @var string $timezone */
             $timezone = config('app.timezone');
             FilamentTimezone::set($timezone);
+        }
+    }
+
+    /**
+     * Configure the date and time formats.
+     */
+    private function configureDateTimeFormats(): void
+    {
+        try {
+            $settings = resolve(PreferencesSettings::class);
+
+            // Configure table columns with custom display format only
+            Table::configureUsing(function (Table $table) use ($settings): void {
+                $dateFormat = $settings->dateFormat;
+                $timeFormat = $settings->timeFormat;
+
+                if ($dateFormat && $timeFormat) {
+                    $table->defaultDateDisplayFormat($dateFormat)
+                        ->defaultTimeDisplayFormat($timeFormat)
+                        ->defaultDateTimeDisplayFormat($dateFormat.' '.$timeFormat);
+                }
+            });
+
+            // Configure infolist components with custom display format only
+            Schema::configureUsing(function (Schema $schema) use ($settings): void {
+                $dateFormat = $settings->dateFormat;
+                $timeFormat = $settings->timeFormat;
+
+                if ($dateFormat && $timeFormat) {
+                    $schema->defaultDateDisplayFormat($dateFormat)
+                        ->defaultTimeDisplayFormat($timeFormat)
+                        ->defaultDateTimeDisplayFormat($dateFormat.' '.$timeFormat);
+                }
+            });
+
+            // Configure DateTimePicker, DatePicker and TimePicker with custom display format only
+            DateTimePicker::configureUsing(function (DateTimePicker $component) use ($settings): void {
+                $dateFormat = $settings->dateFormat;
+                $timeFormat = $settings->timeFormat;
+
+                if ($dateFormat && $timeFormat) {
+                    $component->defaultDateDisplayFormat($dateFormat)
+                        ->defaultTimeDisplayFormat($timeFormat)
+                        ->defaultDateTimeDisplayFormat($dateFormat.' '.$timeFormat);
+                }
+            });
+        } catch (Exception) {
+            // Silently fail if settings are not available
+            // Components will use their default formats
         }
     }
 
