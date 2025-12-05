@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Settings\PreferencesSettings;
+use Exception;
 use Filament\Actions\Action;
 use Filament\Actions\AttachAction;
 use Filament\Actions\CreateAction;
@@ -16,6 +18,7 @@ use Filament\Actions\ImportAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\ViewAction;
 use Filament\Support\Facades\FilamentIcon;
+use Filament\Support\Facades\FilamentTimezone;
 use Filament\Tables\Table;
 use Filament\View\PanelsIconAlias;
 use Illuminate\Support\ServiceProvider;
@@ -37,9 +40,26 @@ final class FilamentServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->configureTimezone();
         $this->configureTable();
         $this->configureAction();
         $this->configureIcon();
+    }
+
+    /**
+     * Configure the timezone.
+     */
+    private function configureTimezone(): void
+    {
+        try {
+            /** @var string $timezone */
+            $timezone = resolve(PreferencesSettings::class)->timezone;
+            FilamentTimezone::set($timezone);
+        } catch (Exception) {
+            /** @var string $timezone */
+            $timezone = config('app.timezone');
+            FilamentTimezone::set($timezone);
+        }
     }
 
     /**
