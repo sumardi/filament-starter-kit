@@ -27,11 +27,22 @@ Kickstart your project with pre-configured Filament admin panel. Only essential 
 
 ## Quick Start
 
+If you have installed PHP and Composer, you may create a new project using the Composer `create-project` command:
+
 ```bash
 composer create-project sumardi/filament-starter-kit your-project-name
 cd your-project-name 
 composer install
 npm install
 npm run build
+php artisan serve
+```
+
+Or, you may create a new project using the Laravel Installer:
+
+```bash
+composer global require laravel/installer
+laravel new your-project-name --using=sumardi/filament-starter-kit
+cd your-project-name
 php artisan serve
 ```
