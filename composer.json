@@ -14,6 +14,7 @@
         "laravel/tinker": "^2.10.1",
         "mallardduck/blade-lucide-icons": "^1.24",
         "nunomaduro/essentials": "^1.0",
+        "spatie/laravel-activitylog": "^4.10",
         "spatie/laravel-permission": "^6.23",
         "vemcogroup/laravel-translation": "^3.0",
         "ysfkaya/filament-phone-input": "^4.0"

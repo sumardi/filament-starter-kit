@@ -32,5 +32,7 @@
         <env name="PULSE_ENABLED" value="false"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
         <env name="NIGHTWATCH_ENABLED" value="false"/>
+        <env name="ACTIVITY_LOGGER_ENABLED" value="false"/>
+        <env name="ACTIVITY_LOGGER_DB_CONNECTION" value="sqlite"/>
     </php>
 </phpunit>
