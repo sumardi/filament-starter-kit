@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Override;
 use Database\Factories\UserFactory;
 use Filament\Auth\MultiFactor\App\Contracts\HasAppAuthentication;
 use Filament\Auth\MultiFactor\App\Contracts\HasAppAuthenticationRecovery;
@@ -188,6 +189,7 @@ final class User extends Authenticatable implements FilamentUser, HasAppAuthenti
      *
      * @return array<string, string>
      */
+    #[Override]
     protected function casts(): array
     {
         return [

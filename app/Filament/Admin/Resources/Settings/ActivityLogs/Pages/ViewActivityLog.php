@@ -24,6 +24,7 @@ final class ViewActivityLog extends ViewRecord
         ];
     }
 
+    #[Override]
     protected function getHeaderActions(): array
     {
         return [

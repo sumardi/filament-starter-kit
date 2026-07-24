@@ -30,6 +30,7 @@ final class UsersRelationManager extends RelationManager
         return false;
     }
 
+    #[Override]
     public function infolist(Schema $schema): Schema
     {
         return $schema

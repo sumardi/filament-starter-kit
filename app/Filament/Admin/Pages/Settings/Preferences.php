@@ -51,7 +51,7 @@ final class Preferences extends SettingsPage
                             ->searchable(),
                         Radio::make('dateFormat')
                             ->live()
-                            ->formatStateUsing(fn (string $state): string => in_array($state, ['Y-m-d', 'd-m-Y', 'm-d-Y']) ? $state : 'custom')
+                            ->formatStateUsing(fn (string $state): string => in_array($state, ['Y-m-d', 'd-m-Y', 'm-d-Y'], true) ? $state : 'custom')
                             ->options([
                                 'Y-m-d' => '2017-04-17',
                                 'd-m-Y' => '17-04-2017',
@@ -74,7 +74,7 @@ final class Preferences extends SettingsPage
                             ->inlineSuffix(),
                         Radio::make('timeFormat')
                             ->live()
-                            ->formatStateUsing(fn (string $state): string => in_array($state, ['H:i:s', 'h:i:s A', 'h:i A', 'H:i']) ? $state : 'custom')
+                            ->formatStateUsing(fn (string $state): string => in_array($state, ['H:i:s', 'h:i:s A', 'h:i A', 'H:i'], true) ? $state : 'custom')
                             ->options([
                                 'H:i:s' => '23:45:00',
                                 'h:i:s A' => '11:45:00 PM',

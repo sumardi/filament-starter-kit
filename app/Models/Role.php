@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Override;
 use Database\Factories\RoleFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Activitylog\LogOptions;
@@ -40,6 +41,7 @@ final class Role extends BaseModel
      *
      * @return array<string, string>
      */
+    #[Override]
     protected function casts(): array
     {
         return [

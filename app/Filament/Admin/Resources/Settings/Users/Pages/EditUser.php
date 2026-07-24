@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Admin\Resources\Settings\Users\Pages;
 
+use Override;
 use App\Filament\Admin\Resources\Settings\Users\UserResource;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
@@ -13,6 +14,7 @@ final class EditUser extends EditRecord
 {
     protected static string $resource = UserResource::class;
 
+    #[Override]
     protected function getHeaderActions(): array
     {
         return [

@@ -57,6 +57,7 @@ final class RoleResource extends Resource
         ];
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [

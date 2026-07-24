@@ -29,11 +29,13 @@ final class ActivityLogResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Settings';
 
+    #[Override]
     public static function getModelLabel(): string
     {
         return __('Activity Log');
     }
 
+    #[Override]
     public static function getPluralModelLabel(): string
     {
         return __('Activity Logs');
@@ -59,6 +61,7 @@ final class ActivityLogResource extends Resource
         ];
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [
