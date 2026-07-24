@@ -36,7 +36,7 @@ jobs:
       - name: Run Rector
         run: vendor/bin/rector process --ansi
       - name: Commit Rector changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "Rector: Apply automated refactorings"
           branch: ${{ github.head_ref }} # Commit to the head of the PR branch
