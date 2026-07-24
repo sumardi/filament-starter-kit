@@ -23,7 +23,7 @@ jobs:
           coverage: none
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:12.*" "orchestra/testbench:10.*" "filament/support:^4.0" --no-interaction --no-update
+          composer require "laravel/framework:13.*" "orchestra/testbench:11.*" "filament/support:^5.0" --no-interaction --no-update
           composer update --no-interaction
       - name: Run PHPStan
         run: ./vendor/bin/phpstan analyse
