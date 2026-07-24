@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Override;
 use Database\Factories\UserFactory;
 use Filament\Auth\MultiFactor\App\Contracts\HasAppAuthentication;
 use Filament\Auth\MultiFactor\App\Contracts\HasAppAuthenticationRecovery;
@@ -13,10 +12,13 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Attributes\Appends;
+use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Override;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -28,6 +30,13 @@ use Spatie\Permission\Traits\HasRoles;
  * @property ?string $app_authentication_secret
  * @property ?array<string> $app_authentication_recovery_codes
  */
+#[Appends(['avatar'])]
+#[Hidden([
+    'app_authentication_secret',
+    'app_authentication_recovery_codes',
+    'password',
+    'remember_token',
+])]
 final class User extends Authenticatable implements FilamentUser, HasAppAuthentication, HasAppAuthenticationRecovery, HasAvatar, HasEmailAuthentication, HasMedia, MustVerifyEmail
 {
     use CausesActivity;
@@ -42,23 +51,6 @@ final class User extends Authenticatable implements FilamentUser, HasAppAuthenti
     use LogsActivity;
 
     use Notifiable;
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
-    protected $hidden = [
-        'app_authentication_secret',
-        'app_authentication_recovery_codes',
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * The accessors to append to the model's array form.
-     */
-    protected $appends = ['avatar'];
 
     /**
      * Determine if the user can access the panel.

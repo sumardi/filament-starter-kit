@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Filament\Admin\Resources\Settings\Roles\Pages;
 
-use Override;
 use App\Filament\Admin\Resources\Settings\Roles\RoleResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
+use Override;
 
 final class ViewRole extends ViewRecord
 {
