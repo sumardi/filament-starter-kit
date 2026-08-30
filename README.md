@@ -13,8 +13,8 @@ Kickstart your project with pre-configured Filament admin panel. Only essential 
 ## What's Included
 
 ### Core Dependencies
-- **Laravel 12.x** - The PHP framework
-- **FilamentPHP 4.x** - Admin panel with SPA mode, custom theme, and MFA enabled
+- **Laravel 13.x** - The PHP framework
+- **FilamentPHP 5.x** - Admin panel with SPA mode, custom theme, and MFA enabled
 - **nunomaduro/essentials** - Better Laravel defaults (strict models, auto-eager loading, immutable dates)
 
 ### Development Tools
