@@ -5,12 +5,14 @@ on:
 
 jobs:
   rector:
+    if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
         with:
-          token: ${{ secrets.GH_ACCESS_TOKEN }}
           ref: ${{ github.head_ref }}
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
